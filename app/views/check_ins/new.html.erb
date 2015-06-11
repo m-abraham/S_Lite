@@ -1,0 +1,80 @@
+<!-- Validation failure messages -->
+
+<% if @check_in.errors.any? %>
+  <% @check_in.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Check In</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_check_in" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+              <input type="hidden" name="user_id" value = "<%= current_user.id %>"
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="current_user.tagline" class="col-sm-2 control-label">
+              Tagline
+            </label>
+            <class="col-sm-10">
+              <input type="text" name="user_status" value = "<%= current_user.tagline %>"
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="current_user.status" class="col-sm-2 control-label">
+              Status
+            </label>
+            <class="col-sm-10">
+              <input type="text" name="user_status" value = "<%= current_user.status %>"
+            </div>
+          </div>
+
+          <!-- Label and input for location_id -->
+          <div class="form-group">
+            <label for="location_id" class="col-sm-2 control-label">
+              Location
+            </label>
+            <div class="col-sm-10">
+
+              <select name="location_id" class= "form-control">
+              <% Location.all.each do |location| %>
+              <option value="<%=location.id%>"><%= location.name %></option>
+              <% end %>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Check In
+              </button>
+              or
+              <a href="/check_ins">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

@@ -1,0 +1,80 @@
+<!-- Validation failure messages -->
+
+<% if @flash.errors.any? %>
+  <% @flash.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Flash</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_flash" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for user_1_id -->
+          <div class="form-group">
+            <label for="user_1_id" class="col-sm-2 control-label">
+              User 1
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user_1_id" name="user_1_id" placeholder="User 1" class="form-control" value="<%= @flash.user_1_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for location_name -->
+          <div class="form-group">
+            <label for="location_name" class="col-sm-2 control-label">
+              Location name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="location_name" name="location_name" placeholder="Location name" class="form-control" value="<%= @flash.location_name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for match_id -->
+          <div class="form-group">
+            <label for="match_id" class="col-sm-2 control-label">
+              Match
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="match_id" name="match_id" placeholder="Match" class="form-control" value="<%= @flash.match_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for user2_id -->
+          <div class="form-group">
+            <label for="user2_id" class="col-sm-2 control-label">
+              User2
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user2_id" name="user2_id" placeholder="User2" class="form-control" value="<%= @flash.user2_id %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Flash
+              </button>
+              or
+              <a href="/flashes">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
